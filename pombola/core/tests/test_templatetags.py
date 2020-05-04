@@ -3,11 +3,13 @@
 from django.http import QueryDict
 from django.template import Context, Template
 from django.test import TestCase
+from nose.plugins.attrib import attr
 
 from ..templatetags.breadcrumbs import breadcrumbs, path_element_overrides
 from ..templatetags.active_class import active_class
 
 
+@attr(country='south_africa')
 class BreadcrumbTest(TestCase):
 
 
@@ -58,6 +60,7 @@ class BreadcrumbTest(TestCase):
             self.assertTrue(url in actual, "Expected {0} to be in {1}".format(url, actual))
 
 
+@attr(country='south_africa')
 class ActiveClassTest(TestCase):
 
     def test_active(self):
@@ -75,6 +78,7 @@ class ActiveClassTest(TestCase):
         self.assertEqual(active_class('/foo', 'home'), '')
 
 
+@attr(country='south_africa')
 class GetFromKeyTest(TestCase):
     def test_gets_existing_key_from_dictionary(self):
         example_dict = {'foo': 'bar'}
@@ -102,6 +106,7 @@ class LazyDictLike(object):
         return key + key
 
 
+@attr(country='south_africa')
 class AddQueryParameterTest(TestCase):
     def test_adds_query_parameters_when_there_are_none(self):
         request  = RequestFake('')
