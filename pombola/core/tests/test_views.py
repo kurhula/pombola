@@ -6,12 +6,14 @@ from django_date_extensions.fields import ApproximateDate
 from django_webtest import WebTest
 from django.contrib.auth.models import User
 from django.test import TestCase
+from nose.plugins.attrib import attr
 
 from slug_helpers.models import SlugRedirect
 
 from pombola.core import models
 
 
+@attr(country='south_africa')
 class HomeViewTest(TestCase):
 
     def test_homepage_context(self):
@@ -20,6 +22,7 @@ class HomeViewTest(TestCase):
         self.assertIn('featured_persons', response.context)
 
 
+@attr(country='south_africa')
 class PositionViewTest(WebTest):
 
     def setUp(self):
@@ -294,6 +297,7 @@ class PositionViewTest(WebTest):
         self.assertTrue(response.context['alphabetical_link_from_query_parameter'])
 
 
+@attr(country='south_africa')
 class TestPersonView(WebTest):
 
     def setUp(self):
