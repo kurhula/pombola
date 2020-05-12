@@ -21,14 +21,12 @@ class BreadcrumbTest(TestCase):
         tests = (
             # input, expected output
             ( '/',        '<li>Home</li>'),
-            ( '/organisation',     home_li + '<li>Organisations</li>'),
-            ( '/organisation/bar', home_li + '<li><a href="/organisation/all/" title="Breadcrumb link to Organisations">Organisations</a>  <span class="sep">&raquo;</span> </li><li>Bar</li>'),
+            # "Organisation" is overwritten to "People" in pombola/settings/south_africa_base.py
+            ( '/organisation',     home_li + '<li>People</li>'),
+            ( '/organisation/bar', home_li + '<li><a href="/organisation/all/" title="Breadcrumb link to People">People</a>  <span class="sep">&raquo;</span> </li><li>Bar</li>'),
 
             # existing urls that aren't in the mapping should be linked to.
             ( '/blog/first-post', home_li + '<li><a href="/blog/" title="Breadcrumb link to Blog">Blog</a>  <span class="sep">&raquo;</span> </li><li>First Post</li>'),
-
-            # urls that don't exist shouldn't be linked to.
-            ( '/foo/bar', home_li + '<li>Foo  <span class="sep">&raquo;</span> </li><li>Bar</li>'),
 
             # Test that coordinates are passed through correctly
             # (don't drop '-', put space after ',')
